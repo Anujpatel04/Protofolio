@@ -22,8 +22,12 @@
                       hsla(230, 65%, 60%, 1));
 
   /* Add new glass effect colors */
-  --glass-color: rgba(0, 0, 0, 0.2);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-color: rgba(0, 0, 0, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  
+  /* Professional spacing */
+  --section-padding: 4rem 0;
+  --container-max-width: 1200px;
 
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
@@ -80,6 +84,9 @@ body {
   background-color: var(--body-color);
   color: var(--text-color);
   transition: background .4s; /*for dark mode animation*/
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3 {
@@ -158,8 +165,9 @@ body.dark-theme{
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
-  max-width: 1024px;
-  margin-inline: 1.5rem;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
 }
 
 .grid {
@@ -169,8 +177,10 @@ body.dark-theme{
 
 
 .section {
-  padding-block: 2.5rem;
+  padding-block: 4rem;
   transition: transform 0.5s ease, opacity 0.5s ease;
+  position: relative;
+  scroll-margin-top: 100px;
 }
 
 .section__border {
@@ -186,14 +196,16 @@ body.dark-theme{
 .section__title {
   font-size: var(--h1-font-size);
   font-weight: var(--font-semi-bold);
-  margin-bottom: .25rem;
+  margin-bottom: .5rem;
+  letter-spacing: 0.5px;
 }
 
 .section__subtitle {
   display: block;
   font-size: var(--small-font-size);
   color: var(--text-color-light);
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  letter-spacing: 0.3px;
 }
 
 .main {
@@ -218,7 +230,8 @@ body.dark-theme{
   box-shadow: 0 4px 20px hsla(207, 24%, 35%, .1);
   padding-inline: 1.5rem;
   border-radius: 3rem;
-  transition: background .4s;
+  transition: background .4s, box-shadow .4s;
+  backdrop-filter: blur(10px);
 }
 
 .nav__logo,
@@ -265,11 +278,13 @@ body.dark-theme{
   row-gap: .25rem;
   font-size: var(--smaller-font-size);
   color: var(--text-color-light);
-  transition: color .3s;
+  transition: color .3s, transform .3s;
+  font-weight: 500;
 }
 
 .nav__link:hover{
   color: var(--title-color);
+  transform: translateY(-2px);
 }
 
 .nav__link i{
@@ -296,9 +311,11 @@ body.dark-theme{
 
 /*=============== HOME ===============*/
 .home__container{
-  row-gap: 2rem;
-  padding-top: 2rem;
+  row-gap: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   min-height: 600px;
+  align-items: center;
 }
 
 .home__data{
@@ -308,8 +325,9 @@ body.dark-theme{
 .home__title{
   text-align: center;
   font-size: var(--biggest-font-size);
-  letter-spacing: .3px;
-  margin-bottom: .5rem;
+  letter-spacing: .5px;
+  margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .home__blob{
@@ -321,7 +339,7 @@ body.dark-theme{
   justify-self: center;
   border-radius: 6.25rem;
   place-items: center;
-  transition: background .4s;
+  transition: background .4s, transform 0.3s ease;
   margin: 2rem auto;
 }
 
@@ -430,7 +448,8 @@ body.dark-theme{
 
 .home__info{
   display: grid;
-  row-gap: 2rem;
+  row-gap: 2.5rem;
+  padding: 1.5rem 0;
 }
 
 .home__info-title{
@@ -448,7 +467,9 @@ body.dark-theme{
 }
 
 .home__info-description{
-  padding-right: 4rem;
+  padding-right: 0;
+  line-height: 1.8;
+  text-align: justify;
 }
 
 .home__info-number{
@@ -522,7 +543,8 @@ body.dark-theme{
 
 /*=============== SKILLS ===============*/
 .skills__container{
-  row-gap: 3.5rem;
+  row-gap: 4rem;
+  padding: 2rem 0;
 }
 
 .skills__title{
@@ -530,9 +552,10 @@ body.dark-theme{
   justify-content: center;
   align-items: center;
   column-gap: .5rem;
-  font-size: var(--small-font-size);
+  font-size: var(--normal-font-size);
   font-weight: var(--font-semi-bold);
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--title-color);
 }
 
 .skills__title i{
@@ -557,15 +580,16 @@ body.dark-theme{
 }
 
 .skills__blob{
-  width: 80px;
-  height: 100px;
+  width: 90px;
+  height: 110px;
   background-color: var(--container-color);
   border-radius: 3rem;
   place-items: center;
-  margin-bottom: 1rem;
-  transition: background .4s;
+  margin-bottom: 1.25rem;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .skills__blob::after {
@@ -595,7 +619,12 @@ body.dark-theme{
 }
 
 .skills__blob img{
-  width: 40px;
+  width: 45px;
+  transition: transform 0.3s ease;
+}
+
+.skills__blob:hover img{
+  transform: scale(1.1);
 }
 
 .skills__name{
@@ -692,6 +721,7 @@ body.dark-theme{
     padding: 1.5rem;
     border-radius: 0.75rem;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .skills__progress-item:hover {
@@ -754,10 +784,12 @@ body.dark-theme{
 /*=============== QUALIFICATION ===============*/
 .qualification{
   position: relative;
+  padding: 2rem 0;
 }
 
 .qualification__container{
-  row-gap: 3.5rem;
+  row-gap: 4rem;
+  padding: 2rem 0;
 }
 
 .qualification__title{
@@ -765,9 +797,10 @@ body.dark-theme{
   justify-content: center;
   align-items: center;
   column-gap: .5rem;
-  font-size: var(--small-font-size);
+  font-size: var(--normal-font-size);
   font-weight: var(--font-semi-bold);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  color: var(--title-color);
 }
 
 .qualification__title i{
@@ -782,7 +815,9 @@ body.dark-theme{
 
 .qualification__name{
   font-size: var(--normal-font-size);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: var(--font-medium);
+  color: var(--title-color);
 }
 
 .qualification__country,
@@ -810,6 +845,7 @@ body.dark-theme{
 /*=============== PROJECTS ===============*/
 .projects__container{
   overflow: initial;
+  padding: 2rem 0;
 }
 
 .projects__content{
@@ -820,7 +856,14 @@ body.dark-theme{
 .projects__img{
   width: 250px;
   border-radius: .75rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.projects__content:hover .projects__img{
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .projects__subtitle{
@@ -830,21 +873,33 @@ body.dark-theme{
 
 .projects__title{
   font-size: var(--h2-font-size);
-  margin-bottom: 1.25rem;
-  margin: .5rem 0 1.25rem;
+  margin: .75rem 0 1.5rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
 }
 
 .projects__button{
   display: inline-flex;
   align-items: center;
   column-gap: .5rem;
-  color: var(--title-color);
+  color: var(--first-color);
   font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  transition: color .3s, transform .3s;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(98, 120, 247, 0.1);
 }
 
 .projects__button i{
   font-size: 1rem;
   transition: transform .3s;
+}
+
+.projects__button:hover{
+  color: var(--first-color-alt);
+  transform: translateX(5px);
+  background: rgba(98, 120, 247, 0.2);
 }
 
 .projects__button:hover i{
@@ -895,12 +950,17 @@ body.dark-theme{
 
 /* Hover effects for project cards */
 .projects__content {
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: var(--container-color);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .projects__content:hover {
     transform: translateY(-10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 /*=============== TESTIMONIAL ===============*/
@@ -999,8 +1059,10 @@ body.dark-theme{
 
 /*=============== FOOTER ===============*/
 .footer__container{
-  padding: 3rem 0 7rem;
+  padding: 4rem 0 6rem;
   text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 4rem;
 }
 
 .footer__title{
@@ -1070,19 +1132,22 @@ body.dark-theme{
   position: fixed;
   right: 1rem;
   bottom: -30%;
-  background-color: var(--body-color);
+  background-color: var(--container-color);
   box-shadow: 0 4px 12px hsla(207, 24%, 35%, .15);
   display: inline-flex;
-  padding: 0.35rem;
-  border-radius: .25rem;
+  padding: 0.5rem;
+  border-radius: .5rem;
   font-size: 1.1rem;
   color: var(--title-color);
   z-index: var(--z-tooltip);
-  transition: bottom .3s, transform .3s;
+  transition: bottom .3s, transform .3s, background-color .3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .scrollup:hover{
-  transform: translateY(-.25rem);
+  transform: translateY(-.5rem);
+  background-color: var(--first-color);
+  color: var(--body-color);
 }
 
 /* Show Scroll Up*/
@@ -1095,7 +1160,11 @@ body.dark-theme{
 @media screen and (max-width: 340px){
 
   .container{
-    margin-inline: 1rem;
+    padding-inline: 1rem;
+  }
+
+  .section {
+    padding-block: 3rem;
   }
 
   .nav__menu{
@@ -1115,6 +1184,15 @@ body.dark-theme{
     justify-self: center;
   }
 
+  .home__info-description{
+    text-align: left;
+    font-size: var(--smaller-font-size);
+  }
+
+  .section__subtitle{
+    margin-bottom: 2.5rem;
+  }
+
 }
 
 /* For medium devices */
@@ -1129,12 +1207,20 @@ body.dark-theme{
     margin: 0 auto;
   }
 
+  .container {
+    padding-inline: 2rem;
+  }
+
+  .section {
+    padding-block: 5rem;
+  }
+
   .skills__container{
     justify-content: center;
   }
 
   .projects__container{
-    width: 400px;
+    width: 450px;
     overflow: hidden;
   }
 
@@ -1146,12 +1232,25 @@ body.dark-theme{
     right: 1rem;
   }
 
+  .home__info-description{
+    padding-right: 2rem;
+  }
+
 }
 
 @media screen and (min-width: 767px) {
 
+  .container {
+    padding-inline: 2.5rem;
+  }
+
+  .section {
+    padding-block: 6rem;
+  }
+
   .home__container{
     grid-template-columns: 1fr 2fr 1fr;
+    gap: 3rem;
   }
 
   .home__data{
@@ -1169,6 +1268,7 @@ body.dark-theme{
 
   .home__info-description{
     padding-right: 0;
+    text-align: left;
   }
 
   .skills__container,
@@ -1206,6 +1306,15 @@ body.dark-theme{
 /* For large devices */
 @media screen and (min-width: 1023px){
 
+  .container {
+    max-width: 1200px;
+    padding-inline: 3rem;
+  }
+
+  .section {
+    padding-block: 7rem;
+  }
+
   .header{
     top: 0;
     bottom: initial;
@@ -1219,7 +1328,7 @@ body.dark-theme{
     box-shadow: none;
     border-radius: 0;
     column-gap: 3rem;
-    margin-inline: 1.5rem;
+    margin-inline: 0;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     padding-left: 0;
@@ -1263,11 +1372,21 @@ body.dark-theme{
   }
   
   .section{
-    padding-block: 8rem 0;
+    padding-block: 8rem 2rem;
   }
 
   .home__title{
-    font-size: 2.25rem;
+    font-size: 2.5rem;
+    line-height: 1.3;
+  }
+
+  .section__title {
+    font-size: 2rem;
+  }
+
+  .section__subtitle {
+    font-size: 1rem;
+    margin-bottom: 5rem;
   }
 
   .scrollup{
@@ -1298,16 +1417,30 @@ body.dark-theme{
 
 @media screen and (min-width: 1200px){
 
+  .container {
+    max-width: 1400px;
+  }
+
+  .section {
+    padding-block: 8rem 3rem;
+  }
+
   .section__border{
-    padding-bottom: 6rem;
+    padding-bottom: 7rem;
   }
 
   .section__subtitle{
-    margin-bottom: 5rem;
+    margin-bottom: 6rem;
+    font-size: 1.125rem;
   }
   
   .home__title{
     font-size: var(--biggest-font-size);
+    line-height: 1.2;
+  }
+
+  .section__title {
+    font-size: 2.5rem;
   }
 
   .home__blob{
@@ -1517,11 +1650,6 @@ body.dark-theme{
     pointer-events: none;
 }
 
-/* Add smooth transitions to sections */
-.section:hover {
-    transform: translateY(-5px);
-}
-
 /* Add hover effects to skills */
 .skills__blob {
     position: relative;
@@ -1581,21 +1709,27 @@ body.dark-theme{
 .achievements__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
+    gap: 2.5rem;
+    padding: 2rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .achievement__card {
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     text-align: center;
-    border-radius: 1rem;
+    border-radius: 1.25rem;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    background: var(--container-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .achievement__card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .achievement__icon {

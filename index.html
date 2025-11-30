@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.8, user-scalable=no">
     <title>Anuj Patel</title>
     <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg">
     <link
@@ -39,6 +39,10 @@
         html {
             scrollbar-width: none; /* Firefox - hide scrollbar */
             -ms-overflow-style: none; /* IE and Edge - hide scrollbar */
+            -webkit-text-size-adjust: 100%; /* Prevent font scaling on iOS */
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
 
         html::-webkit-scrollbar {
@@ -53,6 +57,10 @@
             line-height: 1.6;
             scrollbar-width: none; /* Firefox - hide scrollbar */
             -ms-overflow-style: none; /* IE and Edge - hide scrollbar */
+            -webkit-text-size-adjust: 100%; /* Prevent font scaling on iOS */
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
 
         body::-webkit-scrollbar {

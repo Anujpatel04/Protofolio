@@ -36,19 +36,13 @@
             scroll-behavior: smooth;
         }
 
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
+        html {
+            scrollbar-width: none; /* Firefox - hide scrollbar */
+            -ms-overflow-style: none; /* IE and Edge - hide scrollbar */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
+        html::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera - hide scrollbar */
         }
 
         body {
@@ -57,6 +51,12 @@
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
+            scrollbar-width: none; /* Firefox - hide scrollbar */
+            -ms-overflow-style: none; /* IE and Edge - hide scrollbar */
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera - hide scrollbar */
         }
 
         a {
@@ -2919,15 +2919,12 @@
         <h3 class="hidden">Hi, my name is</h3>
                 <h1 class="hidden stagger-1">Anuj Patel.</h1>
                 <h2 class="hidden stagger-2">I build data-driven solutions.</h2>
-                <p class="hidden stagger-3 hero-intro">
-            Data Scientist specializing in <span class="typewriter" id="typewriter"></span>
-        </p>
 
                 <div class="hero-about hidden stagger-3">
                     <p>
                         Hello! I'm Anuj, a passionate <strong>Data Scientist</strong> currently pursuing my Master's in Computer Science at the <strong>University of Texas at Arlington</strong>, graduating in May 2027. I enjoy creating things that live on the internet, whether that's building machine learning models, developing data-driven solutions, or solving complex analytical problems.
-                    </p>
-                    <p>
+                </p>
+                <p>
                         With <strong>10+ completed projects</strong> under my belt, I've worked on various technologies and frameworks. My journey in data science has been driven by a passion for creating efficient, scalable, and user-friendly applications.
                     </p>
                 </div>
@@ -3595,94 +3592,6 @@
             
             lastScroll = currentScroll;
         }, { passive: true });
-
-        // --- TYPEWRITER EFFECT ---
-        function initTypewriter() {
-        const textElement = document.getElementById("typewriter");
-            if (!textElement) {
-                setTimeout(initTypewriter, 100);
-                return;
-            }
-            
-            // Force element to be visible regardless of parent state
-            textElement.style.opacity = '1';
-            textElement.style.visibility = 'visible';
-            textElement.style.display = 'inline-block';
-            textElement.style.minWidth = '200px';
-            
-            // Also ensure parent paragraph is visible for typewriter
-            const parent = textElement.parentElement;
-            if (parent) {
-                parent.style.opacity = '1';
-                parent.style.visibility = 'visible';
-                parent.style.display = 'block';
-                parent.classList.add('show');
-            }
-            
-            // Data Science related skills
-            const texts = ["Machine Learning", "Data Science", "Deep Learning", "NLP", "Computer Vision", "AI Research", "Predictive Analytics", "Statistical Modeling"];
-        let count = 0;
-        let index = 0;
-        let currentText = "";
-        let letter = "";
-            let isDeleting = false;
-            let typeSpeed = 100;
-
-            function type() {
-                if (count === texts.length) { 
-                    count = 0; 
-                }
-            currentText = texts[count];
-                
-                if (isDeleting) {
-                    letter = currentText.substring(0, index - 1);
-                    index--;
-                    typeSpeed = 50;
-                } else {
-                    letter = currentText.substring(0, index + 1);
-                    index++;
-                    typeSpeed = 100;
-                }
-                
-                if (textElement) {
-            textElement.textContent = letter;
-                    textElement.style.opacity = '1';
-                    textElement.style.visibility = 'visible';
-                    textElement.style.display = 'inline-block';
-                }
-                
-                if (!isDeleting && letter === currentText) {
-                    typeSpeed = 2000; // Pause at end
-                    isDeleting = true;
-                } else if (isDeleting && letter === '') {
-                    isDeleting = false;
-                    count++;
-                    typeSpeed = 500; // Pause before starting next word
-                }
-                
-                setTimeout(type, typeSpeed);
-            }
-            
-            // Start typing immediately
-            type();
-        }
-        
-        // Initialize on multiple events to ensure it runs
-        function startTypewriter() {
-            setTimeout(initTypewriter, 200);
-        }
-        
-        // Run immediately if DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startTypewriter);
-        } else {
-            startTypewriter();
-        }
-        
-        window.addEventListener('load', startTypewriter);
-        
-        // Also try after a longer delay as fallback
-        setTimeout(initTypewriter, 500);
 
         // --- SCROLL ANIMATION OBSERVER ---
         try {

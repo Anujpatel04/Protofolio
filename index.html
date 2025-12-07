@@ -1536,43 +1536,72 @@
 
         /* --- SCROLL TO TOP BUTTON --- */
         .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: rgba(108, 92, 231, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(108, 92, 231, 0.3);
-            border-radius: 50%;
-            color: var(--text-main);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
+            position: fixed !important;
+            bottom: 30px !important;
+            right: 30px !important;
+            width: 55px !important;
+            height: 55px !important;
+            background: linear-gradient(135deg, #6c5ce7, #00cec9) !important;
+            border: 2px solid rgba(255, 255, 255, 0.3) !important;
+            border-radius: 50% !important;
+            color: white !important;
+            font-size: 1.3rem !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            transition: opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        visibility 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                        transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            z-index: 99999 !important;
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.6) !important;
+            pointer-events: auto;
+        }
+
+        .scroll-to-top.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transform: translateY(20px) scale(0.8) !important;
+            pointer-events: none !important;
         }
 
         .scroll-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateY(0) scale(1) !important;
+            pointer-events: auto !important;
         }
 
         .scroll-to-top:hover {
-            background: rgba(108, 92, 231, 1);
-            transform: translateY(-5px);
-            box-shadow: 0 6px 30px rgba(108, 92, 231, 0.5);
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 8px 35px rgba(108, 92, 231, 0.6);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         .scroll-to-top:active {
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .scroll-to-top i {
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover i {
             transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
         }
 
         /* --- ABOUT SECTION --- */
@@ -2063,19 +2092,99 @@
             visibility: visible;
         }
 
+        /* --- CAROUSEL NAVIGATION --- */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+            opacity: 0.9;
+            pointer-events: auto;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .carousel-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .carousel-btn:hover {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 30px rgba(108, 92, 231, 0.6);
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        }
+
+        .carousel-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .carousel-btn-prev {
+            left: 10px;
+        }
+
+        .carousel-btn-next {
+            right: 10px;
+        }
+
+        .carousel-btn i {
+            transition: transform 0.3s;
+        }
+
+        .carousel-btn:hover i {
+            transform: scale(1.2);
+        }
+
+        @media screen and (max-width: 768px) {
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .carousel-btn-prev {
+                left: 5px;
+            }
+
+            .carousel-btn-next {
+                right: 5px;
+            }
+        }
+
         /* --- PROJECTS (GLASS CARDS) --- */
         .project-grid {
             overflow-x: auto;
             overflow-y: hidden;
-            padding: 20px 0 40px;
+            padding: 20px 60px 40px;
             scroll-behavior: smooth;
             scrollbar-width: none; /* Firefox - hide scrollbar */
             -ms-overflow-style: none; /* IE and Edge - hide scrollbar */
             -webkit-overflow-scrolling: touch;
             width: 100%;
             max-width: 100%;
-            padding-left: 0;
-            padding-right: 0;
         }
 
         .project-grid::-webkit-scrollbar {
@@ -2725,15 +2834,13 @@
         .pub-grid {
             overflow-x: auto;
             overflow-y: hidden;
-            padding: 20px 0 40px;
+            padding: 20px 60px 40px;
             scroll-behavior: smooth;
             scrollbar-width: none; /* Firefox - hide scrollbar */
             -ms-overflow-style: none; /* IE and Edge - hide scrollbar */
             -webkit-overflow-scrolling: touch;
             width: 100%;
             max-width: 100%;
-            padding-left: 0;
-            padding-right: 0;
         }
 
         .pub-grid::-webkit-scrollbar {
@@ -3376,8 +3483,12 @@
             </a>
         </div>
         
-        <div class="project-grid" id="project-grid">
-            <div class="project-container" id="project-container">
+        <div class="carousel-wrapper">
+            <button class="carousel-btn carousel-btn-prev" id="project-prev-btn" aria-label="Previous projects" onclick="document.getElementById('project-grid').scrollBy({left: -400, behavior: 'smooth'}); return false;">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="project-grid" id="project-grid">
+                <div class="project-container" id="project-container">
             <a href="https://github.com/Anujpatel04/Churn-Customer-Retention" target="_blank" class="project-card hidden stagger-1" data-tilt>
                 <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop&q=80" alt="Customer Churn Prediction" class="project-img" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&q=80'">
                 <div class="project-content">
@@ -3482,7 +3593,11 @@
                     </div>
                 </div>
             </a>
+                </div>
             </div>
+            <button class="carousel-btn carousel-btn-next" id="project-next-btn" aria-label="Next projects" onclick="document.getElementById('project-grid').scrollBy({left: 400, behavior: 'smooth'}); return false;">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </section>
 
@@ -3735,8 +3850,12 @@
 
     <section id="publications">
         <div class="section-title hidden">Research & Writing</div>
-        <div class="pub-grid" id="pub-grid">
-            <div class="pub-container" id="pub-container">
+        <div class="carousel-wrapper">
+            <button class="carousel-btn carousel-btn-prev" id="pub-prev-btn" aria-label="Previous publications" onclick="document.getElementById('pub-grid').scrollBy({left: -400, behavior: 'smooth'}); return false;">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="pub-grid" id="pub-grid">
+                <div class="pub-container" id="pub-container">
         <a href="https://www.linkedin.com/redir/redirect/?url=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1JrupO8VetxIlYwGXfB-Mb8clJaU10vJx%2Fview%3Fusp%3Dsharing&urlhash=1QwM&isSdui=true&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Ba7Qm8g4LS7uTa8qwwmyfig%3D%3D"
                 target="_blank" class="pub-card hidden stagger-1">
                 <div class="pub-type">INTERNATIONAL JOURNAL</div>
@@ -3769,7 +3888,17 @@
                 <div class="pub-head">RAG vs CAG: The Hidden War Inside Generative AI</div>
                 <p class="desc">A comprehensive comparison of Retrieval-Augmented Generation and Context-Augmented Generation in modern AI systems.</p>
             </a>
+
+            <a href="https://medium.com/@anuj.patel.29dec/the-4-types-of-ai-agents-and-why-they-matter-more-than-ever-578030cdb742" target="_blank" class="pub-card hidden stagger-3">
+                <div class="pub-type">MEDIUM ARTICLE</div>
+                <div class="pub-head">The 4 Types of AI Agents and Why They Matter More Than Ever</div>
+                <p class="desc">An exploration of the four fundamental types of AI agents and their increasing importance in the evolving landscape of artificial intelligence.</p>
+            </a>
+                </div>
             </div>
+            <button class="carousel-btn carousel-btn-next" id="pub-next-btn" aria-label="Next publications" onclick="document.getElementById('pub-grid').scrollBy({left: 400, behavior: 'smooth'}); return false;">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </section>
 
@@ -3796,7 +3925,7 @@
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+    <button id="scrollToTop" class="scroll-to-top show" aria-label="Scroll to top" onclick="window.scrollTo({top: 0, left: 0, behavior: 'smooth'}); return false;" style="display: flex !important; z-index: 99999 !important; cursor: pointer !important;">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -3855,26 +3984,134 @@
         }
 
         // --- SCROLL TO TOP BUTTON ---
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-        
-        function toggleScrollToTop() {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
+        (function() {
+            function initScrollToTop() {
+                const scrollToTopBtn = document.getElementById('scrollToTop');
+                
+                if (!scrollToTopBtn) {
+                    console.error('Scroll to top button not found!');
+                    return false;
+                }
+                
+                // Use the button directly without cloning
+                const btn = scrollToTopBtn;
+                
+                // Ensure button is properly displayed
+                btn.style.display = 'flex';
+                btn.style.cursor = 'pointer';
+                
+                // Scroll function - simplified and reliable
+                function scrollToTop() {
+                    console.log('Scrolling to top...');
+                    
+                    // Use window.scrollTo with smooth behavior (most reliable)
+                    try {
+                        window.scrollTo({
+                            top: 0,
+                            left: 0,
+                            behavior: 'smooth'
+                        });
+                    } catch (e) {
+                        // Fallback: instant scroll
+                        window.scrollTo(0, 0);
+                        document.documentElement.scrollTop = 0;
+                        document.body.scrollTop = 0;
+                    }
+                }
+                
+                // Remove any existing event listeners by cloning (clean slate)
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
+                const finalBtn = newBtn;
+                
+                // Add click handler - multiple methods to ensure it works
+                finalBtn.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Button clicked via onclick');
+                    scrollToTop();
+                    return false;
+                };
+                
+                // Add event listener
+                finalBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Button clicked via addEventListener');
+                    scrollToTop();
+                }, false);
+                
+                // Add with capture phase
+                finalBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToTop();
+                }, true);
+                
+                // Toggle function to show/hide button based on scroll position
+                function toggleScrollToTop() {
+                    const scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                    
+                    // Show button if scrolled more than 100px, hide if at top
+                    if (scrollY > 100) {
+                        // Show button
+                        finalBtn.classList.add('show');
+                        finalBtn.classList.remove('hidden');
+                        finalBtn.style.opacity = '1';
+                        finalBtn.style.visibility = 'visible';
+                        finalBtn.style.pointerEvents = 'auto';
+                        finalBtn.style.display = 'flex';
+                    } else {
+                        // Hide button when at top
+                        finalBtn.classList.remove('show');
+                        finalBtn.classList.add('hidden');
+                        finalBtn.style.opacity = '0';
+                        finalBtn.style.visibility = 'hidden';
+                        finalBtn.style.pointerEvents = 'none';
+                    }
+                }
+                
+                // Show/hide on scroll with throttling for better performance
+                let scrollTimeout;
+                function handleScroll() {
+                    if (scrollTimeout) {
+                        clearTimeout(scrollTimeout);
+                    }
+                    scrollTimeout = setTimeout(toggleScrollToTop, 10);
+                }
+                
+                window.addEventListener('scroll', handleScroll, { passive: true });
+                
+                // Initial check to set correct state - check immediately and after a delay
+                toggleScrollToTop();
+                setTimeout(toggleScrollToTop, 100);
+                setTimeout(toggleScrollToTop, 500);
+                
+                // Also check on resize
+                window.addEventListener('resize', toggleScrollToTop);
+                
+                console.log('Scroll to top button initialized successfully');
+                return true;
             }
-        }
-
-        if (scrollToTopBtn) {
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+            
+            // Try to initialize immediately
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(initScrollToTop, 50);
                 });
+            } else {
+                setTimeout(initScrollToTop, 50);
+            }
+            
+            // Also try on window load
+            window.addEventListener('load', function() {
+                setTimeout(initScrollToTop, 100);
             });
-
-            window.addEventListener('scroll', toggleScrollToTop, { passive: true });
-        }
+            
+            // Force initialization after delays to ensure it works
+            setTimeout(initScrollToTop, 200);
+            setTimeout(initScrollToTop, 500);
+            setTimeout(initScrollToTop, 1000);
+        })();
 
         // --- HEADER SCROLL EFFECT ---
         const nav = document.querySelector('nav');
@@ -4832,6 +5069,122 @@
                 animateSkillItems();
             }, 200);
         }
+
+        // --- CAROUSEL NAVIGATION ---
+        (function() {
+            'use strict';
+            
+            const scrollAmount = 400;
+            
+            function initCarousel(gridId, prevBtnId, nextBtnId) {
+                const grid = document.getElementById(gridId);
+                const prevBtn = document.getElementById(prevBtnId);
+                const nextBtn = document.getElementById(nextBtnId);
+                
+                if (!grid || !prevBtn || !nextBtn) {
+                    console.warn('Carousel elements not found:', { gridId, prevBtnId, nextBtnId });
+                    return false;
+                }
+                
+                console.log('Initializing carousel:', gridId, { grid, prevBtn, nextBtn });
+                
+                // Scroll functions - smooth scrolling only
+                function scrollLeft() {
+                    console.log('Scrolling left, current:', grid.scrollLeft);
+                    if (grid.scrollBy) {
+                        grid.scrollBy({
+                            left: -scrollAmount,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // Fallback
+                        grid.scrollLeft = Math.max(0, grid.scrollLeft - scrollAmount);
+                    }
+                }
+                
+                function scrollRight() {
+                    console.log('Scrolling right, current:', grid.scrollLeft);
+                    if (grid.scrollBy) {
+                        grid.scrollBy({
+                            left: scrollAmount,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // Fallback
+                        const maxScroll = grid.scrollWidth - grid.clientWidth;
+                        grid.scrollLeft = Math.min(maxScroll, grid.scrollLeft + scrollAmount);
+                    }
+                }
+                
+                // Update button visibility
+                function updateButtons() {
+                    if (!grid || !prevBtn || !nextBtn) return;
+                    
+                    const isAtStart = grid.scrollLeft <= 5;
+                    const isAtEnd = grid.scrollLeft >= (grid.scrollWidth - grid.clientWidth - 5);
+                    
+                    prevBtn.style.opacity = isAtStart ? '0.3' : '0.9';
+                    prevBtn.style.pointerEvents = isAtStart ? 'none' : 'auto';
+                    prevBtn.disabled = isAtStart;
+                    
+                    nextBtn.style.opacity = isAtEnd ? '0.3' : '0.9';
+                    nextBtn.style.pointerEvents = isAtEnd ? 'none' : 'auto';
+                    nextBtn.disabled = isAtEnd;
+                }
+                
+                // Don't clone - just add event listeners (inline onclick already works)
+                // Add additional event listeners as backup
+                prevBtn.addEventListener('click', function(e) {
+                    // Inline onclick already handles scrolling, just update buttons
+                    setTimeout(updateButtons, 300);
+                }, false);
+                
+                nextBtn.addEventListener('click', function(e) {
+                    // Inline onclick already handles scrolling, just update buttons
+                    setTimeout(updateButtons, 300);
+                }, false);
+                
+                // Update on scroll
+                grid.addEventListener('scroll', updateButtons, { passive: true });
+                
+                // Initial update
+                setTimeout(updateButtons, 300);
+                
+                // Update on resize
+                window.addEventListener('resize', function() {
+                    setTimeout(updateButtonsFinal, 100);
+                });
+                
+                console.log('Carousel initialized successfully:', gridId);
+                return true;
+            }
+            
+            function setupCarousels() {
+                console.log('Setting up carousels...');
+                const result1 = initCarousel('project-grid', 'project-prev-btn', 'project-next-btn');
+                const result2 = initCarousel('pub-grid', 'pub-prev-btn', 'pub-next-btn');
+                console.log('Carousel setup results:', { projects: result1, pubs: result2 });
+            }
+            
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(setupCarousels, 100);
+                });
+            } else {
+                setTimeout(setupCarousels, 100);
+            }
+            
+            // Also try on window load
+            window.addEventListener('load', function() {
+                setTimeout(setupCarousels, 200);
+            });
+            
+            // Multiple attempts to ensure it works
+            setTimeout(setupCarousels, 500);
+            setTimeout(setupCarousels, 1000);
+            setTimeout(setupCarousels, 2000);
+        })();
     </script>
 </body>
 

@@ -207,19 +207,20 @@ ${liveWebsiteData}
         const messages = [
             {
                 role: 'system',
-                content: `You are a helpful AI assistant that answers questions about Anuj Patel, a Data Scientist and Master's student at University of Texas at Arlington. 
-                
-Use the following information to answer questions about Anuj:
+                content: `You are a concise AI assistant answering questions about Anuj Patel, a Data Scientist and Master's student at University of Texas at Arlington.
+
+Use this information to answer:
 
 ${fullContext}
 
-Instructions:
-- Answer questions based ONLY on the provided information about Anuj
-- If information is not available, politely say you don't have that information
-- Be conversational and friendly
-- Keep responses concise but informative
-- Focus on Anuj's skills, education, projects, and experience
-- If asked about something not in the provided context, politely say you don't have that specific information`
+CRITICAL INSTRUCTIONS:
+- Be BRIEF and PRECISE - maximum 2-3 sentences per answer
+- Answer ONLY from the provided information
+- Use bullet points for lists
+- No fluff or unnecessary words
+- If information is unavailable, say "I don't have that information" - nothing more
+- Focus on facts: skills, education, projects, experience
+- Keep it conversational but very concise`
             },
             ...this.conversationHistory,
             {
@@ -237,8 +238,8 @@ Instructions:
             body: JSON.stringify({
                 model: 'deepseek-chat',
                 messages: messages,
-                temperature: 0.7,
-                max_tokens: 1000
+                temperature: 0.5,
+                max_tokens: 300
             })
         });
 

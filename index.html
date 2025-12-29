@@ -1166,6 +1166,50 @@
         }
 
         /* --- RESUME & CV DOWNLOAD BUTTONS --- */
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .schedule-meeting-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            opacity: 0.9;
+        }
+
+        .schedule-meeting-btn i {
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+        }
+
+        .schedule-meeting-btn:hover {
+            transform: translateY(-2px);
+            opacity: 1;
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .schedule-meeting-btn:hover i {
+            transform: scale(1.1);
+        }
+
+        .schedule-meeting-btn:active {
+            transform: translateY(0);
+        }
+
         .download-buttons-container {
             display: flex;
             gap: 12px;
@@ -2937,6 +2981,56 @@
             color: var(--accent);
         }
 
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            align-items: center;
+        }
+
+        .contact-buttons .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-buttons .btn i {
+            font-size: 1rem;
+        }
+
+        .contact-buttons .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--accent-glow);
+        }
+
+        .btn-calendly {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+            color: white !important;
+            border-color: transparent !important;
+        }
+
+        .btn-calendly:hover {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white !important;
+        }
+
+        @media (max-width: 768px) {
+            .contact-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .contact-buttons .btn {
+                width: 100%;
+                justify-content: center;
+                max-width: 300px;
+            }
+        }
+
         /* --- ANIMATIONS --- */
         .hidden {
             opacity: 0;
@@ -3011,6 +3105,24 @@
 
             .nav-links {
                 display: none;
+            }
+
+            .nav-actions {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .schedule-meeting-btn {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+
+            .schedule-meeting-btn span {
+                display: none;
+            }
+
+            .schedule-meeting-btn i {
+                font-size: 0.9rem;
             }
 
             .download-buttons-container {
@@ -3197,15 +3309,21 @@
             <a href="#publications">Research & Writing</a>
             <a href="#contact">Contact</a>
         </div>
-        <div class="download-buttons-container">
-            <a href="assets/resume/Resume__Anuj.pdf" download class="resume-download-btn" id="resume-btn">
-                <i class="fas fa-file-pdf"></i>
-                <span>Resume</span>
+        <div class="nav-actions">
+            <a href="https://calendly.com/anuj-patel-29dec/30min" target="_blank" class="schedule-meeting-btn" title="Schedule a Meeting">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Schedule Meeting</span>
             </a>
-            <a href="assets/resume/Anuj_CV.pdf" download class="cv-download-btn" id="cv-btn">
-                <i class="fas fa-file-alt"></i>
-                <span>CV</span>
-            </a>
+            <div class="download-buttons-container">
+                <a href="assets/resume/Resume__Anuj.pdf" download class="resume-download-btn" id="resume-btn">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Resume</span>
+                </a>
+                <a href="assets/resume/Anuj_CV.pdf" download class="cv-download-btn" id="cv-btn">
+                    <i class="fas fa-file-alt"></i>
+                    <span>CV</span>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -3839,8 +3957,8 @@
             <div style="color: var(--accent); font-family: var(--font-code); margin-bottom: 20px; font-size: 1.2rem; letter-spacing: 2px;">What's Next?</div>
             <h2>Get In Touch</h2>
             <p>
-                I am currently looking for new opportunities to contribute to software development projects. Whether you
-                have a question or just want to say hi, I'll try my best to get back to you!
+                I am currently looking for new opportunities to contribute to Data Science projects. Whether you
+                have a question, want to collaborate, or just want to say hi, feel free to reach out or schedule a meeting!
             </p>
             <div class="socials">
                 <a href="https://www.linkedin.com/in/anujpatel004/" target="_blank" title="LinkedIn"><i
@@ -3849,7 +3967,16 @@
                 <a href="https://medium.com/@anuj.patel.29dec" target="_blank" title="Medium"><i class="fab fa-medium"></i></a>
                 <a href="mailto:anuj.patel.29dec@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
-            <a href="mailto:anuj.patel.29dec@gmail.com" class="btn">Say Hello</a>
+            <div class="contact-buttons" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+                <a href="https://calendly.com/anuj-patel-29dec/30min" target="_blank" class="btn btn-calendly" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Schedule a Meeting</span>
+                </a>
+                <a href="mailto:anuj.patel.29dec@gmail.com" class="btn">
+                    <i class="fas fa-envelope"></i>
+                    <span>Say Hello</span>
+                </a>
+            </div>
         </div>
     </section>
 

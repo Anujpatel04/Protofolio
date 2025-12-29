@@ -79,14 +79,6 @@
             list-style: none;
         }
 
-        /* Desktop scale adjustment so 100% zoom looks like previous 80% */
-        @media screen and (min-width: 1200px) {
-            body {
-                transform: scale(0.8);
-                transform-origin: top center;
-            }
-        }
-
         /* --- INTERACTIVE BACKGROUND --- */
         .bg-container {
             position: fixed;
@@ -516,6 +508,14 @@
             }
             66% {
                 transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* --- DESKTOP GLOBAL SCALE TWEAK --- */
+        /* Slightly reduce overall scale on large screens so 100% zoom feels less \"zoomed in\" */
+        @media screen and (min-width: 1200px) {
+            body {
+                zoom: 0.9;
             }
         }
 

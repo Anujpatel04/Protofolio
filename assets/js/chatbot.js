@@ -6,8 +6,13 @@ class PortfolioChatbot {
         this.resumeData = '';
         this.websiteData = '';
         this.websiteJsonData = ''; // Additional website data from JSON
-        this.apiKey = ''; // Will be set by user
-        this.apiUrl = 'https://api.deepseek.com/v1/chat/completions';
+        // Get API key from config or environment variable
+        this.apiKey = (window.CHATBOT_CONFIG && window.CHATBOT_CONFIG.apiKey) || 
+                      window.DEEPSEEK_API_KEY || 
+                      localStorage.getItem('deepseek_api_key') || 
+                      '';
+        this.apiUrl = (window.CHATBOT_CONFIG && window.CHATBOT_CONFIG.apiUrl) || 
+                     'https://api.deepseek.com/v1/chat/completions';
         
         this.init();
     }
@@ -381,21 +386,12 @@ document.addEventListener('DOMContentLoaded', () => {
     chatbot = new PortfolioChatbot();
     chatbot.loadApiKey();
     
-    // Check if API key is set, if not, show prompt after a delay
+    // If API key is not set, show a message in console (for development)
     if (!chatbot.apiKey) {
-        setTimeout(() => {
-            // Show a more user-friendly prompt
-            const apiKey = prompt('🤖 Chatbot Setup\n\nTo enable the chatbot, please enter your DeepSeek API key.\n\nYou can get your API key from: https://platform.deepseek.com/\n\n(You can skip this and set it later via browser console: chatbot.setApiKey("your-key"))');
-            if (apiKey && apiKey.trim()) {
-                chatbot.setApiKey(apiKey.trim());
-                // Show welcome message in chat
-                setTimeout(() => {
-                    if (chatbot.isOpen) {
-                        chatbot.addMessageToUI('✅ API key set! You can now ask me questions about Anuj.', 'bot');
-                    }
-                }, 500);
-            }
-        }, 3000);
+        console.warn('DeepSeek API key not found. Please set DEEPSEEK_API_KEY environment variable in Railway.');
+        console.info('For local development, you can set it via: chatbot.setApiKey("your-key")');
+    } else {
+        console.log('Chatbot API key loaded successfully');
     }
 });
 

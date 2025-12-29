@@ -4,7 +4,8 @@
   "description": "Portfolio website with AI chatbot",
   "main": "index.html",
   "scripts": {
-    "start": "npx serve -s . -l 3000",
+    "prestart": "node inject-config.js",
+    "start": "npx serve -s . -l $PORT",
     "dev": "npx serve -s . -l 3000"
   },
   "keywords": [

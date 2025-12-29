@@ -4,6 +4,9 @@ nixPkgs = ["nodejs-18_x"]
 [phases.install]
 cmds = ["echo 'No installation required for static site'"]
 
+[phases.build]
+cmds = ["node inject-config.js"]
+
 [start]
-cmd = "npx serve -s . -l $PORT"
+cmd = "npm start"
 

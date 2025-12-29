@@ -79,6 +79,14 @@
             list-style: none;
         }
 
+        /* Desktop scale adjustment so 100% zoom looks like previous 80% */
+        @media screen and (min-width: 1200px) {
+            body {
+                transform: scale(0.8);
+                transform-origin: top center;
+            }
+        }
+
         /* --- INTERACTIVE BACKGROUND --- */
         .bg-container {
             position: fixed;

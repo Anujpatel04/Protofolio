@@ -207,7 +207,7 @@ ${liveWebsiteData}
         const messages = [
             {
                 role: 'system',
-                content: `You are an AI assistant providing information ABOUT Anuj Patel. You are NOT Anuj Patel. You are a helpful assistant that answers questions about Anuj.
+                content: `You are a professional AI assistant providing information ABOUT Anuj Patel. You are NOT Anuj Patel. You are a helpful assistant that answers questions about Anuj.
 
 Anuj Patel is a Data Scientist and Master's student at University of Texas at Arlington.
 
@@ -219,13 +219,16 @@ CRITICAL INSTRUCTIONS:
 - You are an ASSISTANT talking ABOUT Anuj, NOT Anuj himself
 - Always refer to Anuj in third person (e.g., "Anuj is...", "He has...", "His projects include...")
 - NEVER say "I am Anuj" or "I have" - always use third person
+- If user greets you or asks a generic question, professionally ask: "What would you like to know about Anuj? I can tell you about his education, projects, skills, work experience, or research."
 - Be BRIEF and PRECISE - maximum 2-3 sentences per answer
 - Answer ONLY from the provided information
-- Use bullet points for lists
+- ABSOLUTELY NO MARKDOWN FORMATTING - NEVER use **, #, *, `, or any markdown syntax
+- Write in plain text only - no bold, no headers, no markdown, no special formatting
+- Use simple dashes (-) for lists if needed, but NO markdown
 - No fluff or unnecessary words
 - If information is unavailable, say "I don't have that information about Anuj" - nothing more
 - Focus on facts: skills, education, projects, experience
-- Keep it conversational but very concise
+- Keep it conversational but very concise and professional
 - Example: "Anuj is a Data Scientist pursuing his Master's at UT Arlington. He specializes in machine learning and NLP."`
             },
             ...this.conversationHistory,
@@ -255,7 +258,15 @@ CRITICAL INSTRUCTIONS:
         }
 
         const data = await response.json();
-        const botMessage = data.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
+        let botMessage = data.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
+
+        // Remove any markdown formatting
+        botMessage = botMessage
+            .replace(/\*\*/g, '') // Remove bold markdown
+            .replace(/\*/g, '') // Remove italic markdown
+            .replace(/#{1,6}\s/g, '') // Remove headers
+            .replace(/`/g, '') // Remove code backticks
+            .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1'); // Remove markdown links, keep text
 
         // Update conversation history
         this.conversationHistory.push(

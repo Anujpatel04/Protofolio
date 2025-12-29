@@ -1,0 +1,9 @@
+[phases.setup]
+nixPkgs = ["nodejs-18_x"]
+
+[phases.install]
+cmds = ["echo 'No installation required for static site'"]
+
+[start]
+cmd = "npx serve -s . -l $PORT"
+

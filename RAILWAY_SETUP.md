@@ -128,3 +128,4 @@ nixpacks.toml       # Alternative Railway config
 - Or manually trigger redeploy
 - Chatbot works automatically!
 
+

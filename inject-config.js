@@ -32,3 +32,4 @@ if (htmlContent.includes(placeholder)) {
     console.warn('⚠️  Could not find placeholder in HTML. Make sure the script tag exists.');
 }
 
+

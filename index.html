@@ -1376,6 +1376,39 @@
             margin-bottom: 20px;
         }
 
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .hero-contact-info a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 35, 60, 0.3);
+        }
+
+        .hero-contact-info a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(108, 92, 231, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-contact-info a i {
+            font-size: 1rem;
+        }
+
         .hero-intro {
             color: var(--text-muted);
             font-size: 1.1rem;
@@ -3103,6 +3136,21 @@
                 font-size: 2rem;
             }
 
+            .hero-contact-info {
+                gap: 12px;
+                margin-bottom: 25px;
+            }
+
+            .hero-contact-info a {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+                gap: 6px;
+            }
+
+            .hero-contact-info a span {
+                font-size: 0.85rem;
+            }
+
             .hero-intro {
                 font-size: 1rem;
             }
@@ -3338,6 +3386,17 @@
         <h3 class="hidden">Hi, my name is</h3>
                 <h1 class="hidden stagger-1">Anuj Patel.</h1>
                 <h2 class="hidden stagger-2">I build data-driven solutions.</h2>
+
+                <div class="hero-contact-info hidden stagger-2">
+                    <a href="tel:+16822172520" title="Call me">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 682 217-2520</span>
+                    </a>
+                    <a href="mailto:anuj.patel.29dec@gmail.com" title="Email me">
+                        <i class="fas fa-envelope"></i>
+                        <span>anuj.patel.29dec@gmail.com</span>
+                    </a>
+                </div>
 
                 <div class="hero-about hidden stagger-3">
                     <p>

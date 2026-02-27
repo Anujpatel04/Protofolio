@@ -163,7 +163,7 @@ ${liveWebsiteData}
 
         // Check if API key is set
         if (!this.apiKey) {
-            this.showMessage('Please set your DeepSeek API key in the chatbot configuration.', 'bot');
+            this.showMessage('No DeepSeek API key is set. For local dev: set DEEPSEEK_API_KEY in your environment and run the inject script, or add the key in Railway/deployment variables. Get or check your key at platform.deepseek.com.', 'bot');
             return;
         }
 
@@ -185,7 +185,10 @@ ${liveWebsiteData}
             this.addMessageToUI(response, 'bot');
         } catch (error) {
             this.removeTypingIndicator(typingId);
-            this.addMessageToUI('Sorry, I encountered an error. Please try again later.', 'bot');
+            const userMessage = error?.message && !error.message.includes('Failed to fetch')
+                ? error.message
+                : 'Sorry, I could not reach the chat service. Check your connection or try again later.';
+            this.addMessageToUI(userMessage, 'bot');
             console.error('Chatbot error:', error);
         }
     }
@@ -252,8 +255,21 @@ CRITICAL INSTRUCTIONS:
         });
 
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.error?.message || 'API request failed');
+            let errorMessage = 'API request failed';
+            try {
+                const errorBody = await response.json();
+                errorMessage = errorBody.error?.message || errorBody.message || errorMessage;
+            } catch (_) {
+                errorMessage = response.statusText || errorMessage;
+            }
+            if (response.status === 401) {
+                errorMessage = 'Invalid or expired API key. Please check your DeepSeek API key at platform.deepseek.com and update DEEPSEEK_API_KEY in your deployment settings.';
+            } else if (response.status === 429) {
+                errorMessage = 'Rate limit exceeded. Please try again in a moment.';
+            } else if (response.status >= 500) {
+                errorMessage = 'DeepSeek service is temporarily unavailable. Please try again later.';
+            }
+            throw new Error(errorMessage);
         }
 
         const data = await response.json();

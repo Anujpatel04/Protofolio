@@ -30,10 +30,14 @@ Renuka Softec, India - Python Intern | April 2024 – May 2024
 
 KEY PROJECTS
 
-ANUJ AI/ML LAB | LLMs, RAG, Multi-Agent Systems, Python, CrewAI, Streamlit | IN PROGRESS | CODE
+AI/ML LAB | LLMs, RAG, Multi-Agent Systems, Python, CrewAI, Streamlit | IN PROGRESS | CODE
 ● Built a modular AI platform with LLMs, RAG pipelines, and multi-agent systems for real-world AI workflow evaluation.
 ● Implemented agent-based retrieval across documents, email, and web sources with extensible orchestration logic.
 ● Designed a scalable, state-persistent architecture using agent coordination protocols (MCP, A2A) for production-grade RAG systems.
+
+GRAPH-RAG ARXIV | Neo4j, FastAPI, LangChain, Next.js, Python | CODE
+● Introduced a Graph-based Retrieval Augmented Generation (Graph-RAG) system over arXiv metadata using Neo4j graph traversal instead of vector search for more accurate, context-grounded answers.
+● Established a knowledge graph schema (papers, authors, topics) and FastAPI APIs for graph retrieval, multi-hop reasoning, and LLM-driven response synthesis.
 
 INCREMENTAL MODEL | Python, NLP, Sentence Transformers, LLMs, REST APIs, OpenAI, SearchAPIs | CODE
 ● Developed a production-grade incremental news intelligence system supporting continuous ingestion, embedding-based clustering, and trend detection without full model retraining.

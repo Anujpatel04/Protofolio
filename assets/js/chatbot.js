@@ -75,9 +75,9 @@ class PortfolioChatbot {
             }
         });
 
-        // Also extract from specific sections
+        // Also extract from specific sections (project cards + featured AI/ML Lab)
         const heroText = document.querySelector('.hero-content')?.innerText || '';
-        const projects = Array.from(document.querySelectorAll('.project-card')).map(card => {
+        const projects = Array.from(document.querySelectorAll('.project-card, .featured-lab-card')).map(card => {
             return card.innerText || '';
         }).join('\n\n');
         const qualifications = document.querySelector('#qualifications')?.innerText || '';

@@ -26,19 +26,19 @@
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
-            --bg-color: #0a0e27;
-            --card-bg: rgba(20, 25, 45, 0.3);
-            --card-hover: rgba(30, 35, 55, 0.4);
+            --bg-color: #000000;
+            --card-bg: rgba(10, 10, 10, 0.5);
+            --card-hover: rgba(20, 20, 20, 0.6);
             --accent: #6c5ce7;
             /* Soft Purple */
             --accent-glow: rgba(108, 92, 231, 0.3);
             --secondary: #00cec9;
             /* Teal */
             --text-main: #e4e6eb;
-            --text-muted: #b0b3b8;
+            --text-muted: #a0a0a0;
             --font-main: 'Outfit', sans-serif;
             --font-code: 'Fira Code', monospace;
-            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         * {
@@ -98,7 +98,7 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
-            background: linear-gradient(135deg, #0a0e27 0%, #0f1528 25%, #0a0e27 50%, #0f1528 75%, #0a0e27 100%);
+            background: #000000;
             cursor: none;
         }
 
@@ -1136,7 +1136,7 @@
             color: #2d3436;
             letter-spacing: 0.5px;
             transition: 0.3s;
-            background: #ffffff;
+            background: #6c5ce7;
             padding: 10px 18px;
             border-radius: 12px;
             display: flex;
@@ -1198,7 +1198,7 @@
             padding: 10px 20px;
             background: transparent;
             color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(108, 92, 231, 0.2);
             border-radius: 25px;
             font-size: 0.85rem;
             font-weight: 500;
@@ -1404,7 +1404,7 @@
             transition: all 0.3s ease;
             padding: 8px 16px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.1);
             background: rgba(30, 35, 60, 0.3);
         }
 
@@ -1691,48 +1691,12 @@
             text-decoration: none;
             color: inherit;
             transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
+            overflow: visible;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .cert-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: transform 0.4s ease;
-        }
-
-        .cert-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 24px;
-            background: radial-gradient(circle at 50% 0%, rgba(108, 92, 231, 0.08), transparent 60%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
         }
 
         .cert-card:hover {
             transform: translateY(-12px);
-            border-color: rgba(108, 92, 231, 0.5);
-            box-shadow:
-                0 20px 60px rgba(108, 92, 231, 0.25),
-                0 8px 24px rgba(0, 206, 201, 0.15);
-        }
-
-        .cert-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .cert-card:hover::after {
-            opacity: 1;
         }
 
         .cert-badge-wrapper {
@@ -1942,7 +1906,7 @@
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 20px;
-            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            border-left: 2px solid rgba(108, 92, 231, 0.1);
             scrollbar-width: thin;
             scrollbar-color: var(--accent) transparent;
         }
@@ -1952,7 +1916,7 @@
         }
 
         .timeline::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(108, 92, 231, 0.05);
             border-radius: 10px;
         }
 
@@ -2036,7 +2000,7 @@
 
         .work-details {
             padding-left: 20px;
-            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            border-left: 2px solid rgba(108, 92, 231, 0.1);
         }
 
         /* --- WORK DETAILS PANEL --- */
@@ -2044,7 +2008,7 @@
             position: sticky;
             top: 120px;
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.1);
             border-radius: 20px;
             padding: 40px;
             height: fit-content;
@@ -2059,7 +2023,7 @@
         }
 
         .work-details-panel::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(108, 92, 231, 0.05);
             border-radius: 10px;
         }
 
@@ -2177,7 +2141,7 @@
 
         .skills-card {
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.1);
             border-radius: 0;
             padding: 20px;
             width: 100%;
@@ -2217,7 +2181,7 @@
             min-width: 80px;
             border-radius: 16px;
             background: rgba(30, 35, 55, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2305,7 +2269,7 @@
             height: 50px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent), var(--secondary));
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(108, 92, 231, 0.2);
             color: white;
             font-size: 1.2rem;
             cursor: pointer;
@@ -2405,7 +2369,7 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.1);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: visible;
@@ -2427,7 +2391,7 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.1);
         }
 
         .project-content {
@@ -2446,31 +2410,9 @@
             overflow: visible;
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: 0.4s;
-        }
-
         .project-card:hover {
             transform: translateY(-10px);
             background: var(--card-hover);
-            box-shadow: 
-                0 20px 60px rgba(108, 92, 231, 0.4),
-                0 10px 30px rgba(0, 206, 201, 0.3),
-                0 0 0 1px rgba(108, 92, 231, 0.2);
-            border-color: rgba(108, 92, 231, 0.4);
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
         }
 
         .top-icons {
@@ -2543,7 +2485,7 @@
             text-decoration: none;
             color: inherit;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 
                 0 10px 40px rgba(108, 92, 231, 0.2),
@@ -2564,11 +2506,6 @@
 
         .featured-lab-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(108, 92, 231, 0.6);
-            box-shadow: 
-                0 20px 60px rgba(108, 92, 231, 0.4),
-                0 10px 30px rgba(0, 206, 201, 0.3),
-                0 0 0 1px rgba(108, 92, 231, 0.3);
         }
 
         .featured-lab-card:hover::before {
@@ -2705,7 +2642,7 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(108, 92, 231, 0.1);
         }
 
         .featured-lab-link {
@@ -2791,39 +2728,20 @@
 
         .qual-section {
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.1);
             border-radius: 20px;
             padding: 50px 40px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             display: flex;
             flex-direction: column;
             height: 100%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .qual-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s;
-        }
-
         .qual-section:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(108, 92, 231, 0.3);
-            border-color: var(--accent);
-        }
-
-        .qual-section:hover::before {
-            transform: scaleX(1);
         }
 
         .qual-header {
@@ -2832,7 +2750,7 @@
             gap: 15px;
             margin-bottom: 40px;
             padding-bottom: 20px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid rgba(108, 92, 231, 0.1);
         }
 
         .qual-header i {
@@ -2864,7 +2782,7 @@
         .qual-item {
             margin-bottom: 35px;
             padding-bottom: 35px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.08);
             position: relative;
             padding-left: 20px;
         }
@@ -3064,7 +2982,7 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.1);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             min-width: 350px;
             max-width: 350px;
@@ -3072,35 +2990,13 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .pub-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
         }
 
         .pub-card:hover {
             transform: translateY(-10px);
             background: var(--card-hover);
-            box-shadow: 
-                0 20px 60px rgba(108, 92, 231, 0.4),
-                0 10px 30px rgba(0, 206, 201, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border-color: rgba(108, 92, 231, 0.5);
-        }
-
-        .pub-card:hover::before {
-            transform: scaleX(1);
         }
 
         .pub-type {
@@ -3173,7 +3069,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(108, 92, 231, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -3295,7 +3191,7 @@
 
             .hero-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
                 max-width: 100%;
                 width: 100%;
             }
@@ -3303,12 +3199,21 @@
             .hero-image {
                 order: -1;
                 height: auto;
+                justify-content: center;
             }
 
-            .hero-image .image-wrapper {
-                max-width: 350px;
-                min-height: 300px;
-                max-height: 400px;
+            .spline-wrapper {
+                max-width: 400px;
+                min-height: 400px;
+                margin: 0 auto;
+            }
+
+            .spline-container {
+                min-height: 400px;
+            }
+
+            .aceternity-spotlight {
+                display: none;
             }
 
             .hero h1 {
@@ -3486,7 +3391,270 @@
                 font-size: 1.2rem;
             }
         }
+
+        /* --- SPLINE 3D SCENE STYLES --- */
+        .spline-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 550px;
+            border-radius: 0;
+            overflow: visible;
+            background: transparent;
+            border: none;
+        }
+
+        .spline-container spline-viewer {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        .spline-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Hide Spline watermark/logo */
+        spline-viewer::part(logo) {
+            display: none !important;
+        }
+        
+        spline-viewer #logo,
+        spline-viewer [id*="logo"],
+        spline-viewer a[href*="spline"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Cover watermark area with overlay */
+        .spline-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 50px;
+            background: linear-gradient(to right, transparent, var(--bg-color) 30%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Aceternity-style Spotlight SVG */
+        .aceternity-spotlight {
+            position: absolute;
+            top: -40%;
+            left: 0;
+            width: 138%;
+            height: 169%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            animation: spotlightFadeIn 2s ease forwards;
+        }
+
+        @keyframes spotlightFadeIn {
+            0% { opacity: 0; transform: translateX(-100px) translateY(100px); }
+            100% { opacity: 1; transform: translateX(0) translateY(0); }
+        }
+
+        /* Remove all borders and boxes */
+        .spline-border-glow {
+            display: none;
+        }
+
+        .spline-spotlight {
+            position: absolute;
+            top: -60%;
+            left: 20%;
+            width: 120%;
+            height: 150%;
+            background: radial-gradient(ellipse at center top, rgba(108, 92, 231, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.8;
+        }
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.8;
+        }
+
+        .spline-glow {
+            display: none;
+        }
+
+        .spline-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 750px;
+            height: 100%;
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        .spline-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .spline-loader .loader {
+            width: 45px;
+            height: 45px;
+            border: 2px solid rgba(108, 92, 231, 0.1);
+            border-top: 2px solid #6c5ce7;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .spline-loader-text {
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .spline-loaded .spline-loader {
+            display: none;
+        }
+
+        /* Interaction hint */
+        .spline-hint {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-code);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.3s ease;
+        }
+
+        .spline-hint i {
+            font-size: 0.8rem;
+            animation: dragHint 2s ease-in-out infinite;
+        }
+
+        @keyframes dragHint {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        .spline-container:hover .spline-hint {
+            opacity: 0;
+        }
+
+        /* --- GLOWING BORDER EFFECT --- */
+        .glow-card {
+            position: relative;
+            --glow-spread: 40;
+            --glow-start: 0;
+            --glow-active: 0;
+            --glow-border-width: 2px;
+        }
+
+        .glow-border {
+            position: absolute;
+            inset: calc(-1 * var(--glow-border-width));
+            border-radius: inherit;
+            padding: var(--glow-border-width);
+            background: conic-gradient(
+                from calc((var(--glow-start) - var(--glow-spread)) * 1deg),
+                transparent 0deg,
+                #dd7bbb calc(var(--glow-spread) * 0.5deg),
+                #d79f1e calc(var(--glow-spread) * 1deg),
+                #5a922c calc(var(--glow-spread) * 1.5deg),
+                #4c7894 calc(var(--glow-spread) * 2deg),
+                transparent calc(var(--glow-spread) * 2deg)
+            );
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: var(--glow-active);
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .glow-blur {
+            position: absolute;
+            inset: calc(-1 * var(--glow-border-width) - 6px);
+            border-radius: inherit;
+            padding: calc(var(--glow-border-width) + 6px);
+            background: conic-gradient(
+                from calc((var(--glow-start) - var(--glow-spread)) * 1deg),
+                transparent 0deg,
+                rgba(221, 123, 187, 0.5) calc(var(--glow-spread) * 0.5deg),
+                rgba(215, 159, 30, 0.5) calc(var(--glow-spread) * 1deg),
+                rgba(90, 146, 44, 0.5) calc(var(--glow-spread) * 1.5deg),
+                rgba(76, 120, 148, 0.5) calc(var(--glow-spread) * 2deg),
+                transparent calc(var(--glow-spread) * 2deg)
+            );
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: var(--glow-active);
+            filter: blur(12px);
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* Accent variant (purple/teal) */
+        .glow-card-accent .glow-border {
+            background: conic-gradient(
+                from calc((var(--glow-start) - var(--glow-spread)) * 1deg),
+                transparent 0deg,
+                var(--accent) calc(var(--glow-spread) * 1deg),
+                var(--secondary) calc(var(--glow-spread) * 1.5deg),
+                transparent calc(var(--glow-spread) * 2deg)
+            );
+        }
+
+        .glow-card-accent .glow-blur {
+            background: conic-gradient(
+                from calc((var(--glow-start) - var(--glow-spread)) * 1deg),
+                transparent 0deg,
+                rgba(108, 92, 231, 0.5) calc(var(--glow-spread) * 1deg),
+                rgba(0, 206, 201, 0.5) calc(var(--glow-spread) * 1.5deg),
+                transparent calc(var(--glow-spread) * 2deg)
+            );
+        }
     </style>
+
+    <!-- Spline 3D Runtime -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 </head>
 
 <body>
@@ -3626,17 +3794,32 @@
             </div>
 
             <div class="hero-image hidden stagger-2">
-                <div class="image-wrapper">
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="assets/images/Profile.png" alt="Anuj Patel"
-                    onerror="this.src='https://via.placeholder.com/300x300/161622/ffffff?text=User'">
-                            </div>
-                            <div class="flip-card-back">
-                                <img src="assets/images/Girl Day GIF.gif" alt="Anuj Patel" class="flip-card-gif">
-                            </div>
+                <!-- Aceternity Spotlight Effect -->
+                <svg class="aceternity-spotlight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3787 2842" fill="none">
+                    <g filter="url(#spotlight-filter)">
+                        <ellipse cx="1924.71" cy="273.501" rx="1924.71" ry="273.501" transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)" fill="white" fill-opacity="0.21"></ellipse>
+                    </g>
+                    <defs>
+                        <filter id="spotlight-filter" x="0.860352" y="0.838989" width="3785.16" height="2840.26" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+                            <feGaussianBlur stdDeviation="151" result="effect1_foregroundBlur"></feGaussianBlur>
+                        </filter>
+                    </defs>
+                </svg>
+                
+                <div class="spline-wrapper">
+                    <div class="spline-container" id="spline-scene">
+                        <div class="spline-loader">
+                            <div class="loader"></div>
+                            <span class="spline-loader-text">Loading 3D...</span>
                         </div>
+                        <spline-viewer 
+                            url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                            events-target="global"
+                            hint="false"
+                            loading-anim-type="none"
+                        ></spline-viewer>
                     </div>
                 </div>
             </div>
@@ -3647,7 +3830,6 @@
         <div class="qualifications-container">
             <div class="qual-section hidden stagger-1">
                 <div class="qual-header">
-                    <i class="fas fa-graduation-cap"></i>
                     <h3>Education</h3>
             </div>
                 <div class="qual-item">
@@ -3673,7 +3855,6 @@
 
             <div class="qual-section experience-scrollable hidden stagger-2">
                 <div class="qual-header">
-                    <i class="fas fa-briefcase"></i>
                     <h3>Work</h3>
                 </div>
                 <div class="experience-scroll-container">
@@ -3778,9 +3959,6 @@
         <div class="featured-lab-container">
             <a href="https://github.com/Anujpatel04/Anuj-AI-ML-Lab" target="_blank" class="featured-lab-card hidden">
                 <div class="featured-lab-header">
-                    <div class="featured-lab-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
                     <div class="featured-lab-badge">
                         <i class="fas fa-star"></i>
                         <span>Featured Lab</span>
@@ -5492,6 +5670,167 @@
             setTimeout(setupCarousels, 500);
             setTimeout(setupCarousels, 1000);
             setTimeout(setupCarousels, 2000);
+        })();
+    </script>
+
+    <!-- Spline 3D Scene Initialization -->
+    <script>
+        (function() {
+            // Handle Spline viewer loading state
+            const splineContainer = document.getElementById('spline-scene');
+            const splineViewer = document.querySelector('spline-viewer');
+            
+            // Function to hide Spline watermark/logo
+            function hideSplineLogo() {
+                if (splineViewer && splineViewer.shadowRoot) {
+                    const logo = splineViewer.shadowRoot.querySelector('#logo');
+                    if (logo) {
+                        logo.style.display = 'none';
+                        logo.remove();
+                    }
+                    // Also try other potential logo selectors
+                    const allLinks = splineViewer.shadowRoot.querySelectorAll('a');
+                    allLinks.forEach(link => {
+                        if (link.href && link.href.includes('spline')) {
+                            link.style.display = 'none';
+                            link.remove();
+                        }
+                    });
+                    const logoDiv = splineViewer.shadowRoot.querySelector('div[id*="logo"]');
+                    if (logoDiv) {
+                        logoDiv.style.display = 'none';
+                        logoDiv.remove();
+                    }
+                }
+            }
+            
+            if (splineViewer) {
+                // Add loaded class when Spline finishes loading
+                splineViewer.addEventListener('load', function() {
+                    splineContainer.classList.add('spline-loaded');
+                    console.log('Spline 3D scene loaded successfully');
+                    // Hide logo after load
+                    hideSplineLogo();
+                    setTimeout(hideSplineLogo, 100);
+                    setTimeout(hideSplineLogo, 500);
+                    setTimeout(hideSplineLogo, 1000);
+                });
+                
+                // Fallback: remove loader after timeout
+                setTimeout(function() {
+                    splineContainer.classList.add('spline-loaded');
+                    hideSplineLogo();
+                }, 8000);
+                
+                // Multiple attempts to hide logo
+                setTimeout(hideSplineLogo, 2000);
+                setTimeout(hideSplineLogo, 3000);
+                setTimeout(hideSplineLogo, 5000);
+            }
+        })();
+    </script>
+
+    <!-- Glowing Border Effect -->
+    <script>
+        (function() {
+            // Initialize glowing effect on all glow-card elements
+            function initGlowingEffect() {
+                const glowCards = document.querySelectorAll('.glow-card');
+                
+                glowCards.forEach(card => {
+                    let animationFrame = 0;
+                    let currentAngle = 0;
+                    
+                    function handleMove(e) {
+                        if (animationFrame) {
+                            cancelAnimationFrame(animationFrame);
+                        }
+                        
+                        animationFrame = requestAnimationFrame(() => {
+                            const rect = card.getBoundingClientRect();
+                            const centerX = rect.left + rect.width / 2;
+                            const centerY = rect.top + rect.height / 2;
+                            
+                            const mouseX = e.clientX;
+                            const mouseY = e.clientY;
+                            
+                            // Check if mouse is near the card (within proximity)
+                            const proximity = 100;
+                            const isNear = mouseX > rect.left - proximity &&
+                                          mouseX < rect.right + proximity &&
+                                          mouseY > rect.top - proximity &&
+                                          mouseY < rect.bottom + proximity;
+                            
+                            // Check if mouse is too close to center (inactive zone)
+                            const distanceFromCenter = Math.hypot(mouseX - centerX, mouseY - centerY);
+                            const inactiveRadius = Math.min(rect.width, rect.height) * 0.1;
+                            
+                            if (!isNear || distanceFromCenter < inactiveRadius) {
+                                card.style.setProperty('--glow-active', '0');
+                                return;
+                            }
+                            
+                            card.style.setProperty('--glow-active', '1');
+                            
+                            // Calculate angle from center to mouse
+                            const targetAngle = (180 * Math.atan2(mouseY - centerY, mouseX - centerX)) / Math.PI + 90;
+                            
+                            // Smooth angle transition
+                            let angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
+                            currentAngle += angleDiff * 0.15;
+                            
+                            card.style.setProperty('--glow-start', currentAngle);
+                        });
+                    }
+                    
+                    document.addEventListener('mousemove', handleMove, { passive: true });
+                    
+                    // Deactivate on scroll
+                    window.addEventListener('scroll', () => {
+                        card.style.setProperty('--glow-active', '0');
+                    }, { passive: true });
+                });
+            }
+            
+            // Auto-add glow-card class and inject glow elements
+            function addGlowToCards() {
+                const selectors = [
+                    '.qual-section',
+                    '.cert-card',
+                    '.project-card',
+                    '.pub-card',
+                    '.featured-lab-card'
+                ];
+                
+                selectors.forEach(selector => {
+                    document.querySelectorAll(selector).forEach(el => {
+                        // Add glow-card class
+                        el.classList.add('glow-card');
+                        
+                        // Inject glow elements if not already present
+                        if (!el.querySelector('.glow-border')) {
+                            const glowBorder = document.createElement('div');
+                            glowBorder.className = 'glow-border';
+                            el.insertBefore(glowBorder, el.firstChild);
+                            
+                            const glowBlur = document.createElement('div');
+                            glowBlur.className = 'glow-blur';
+                            el.insertBefore(glowBlur, el.firstChild);
+                        }
+                    });
+                });
+            }
+            
+            // Initialize on DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    addGlowToCards();
+                    initGlowingEffect();
+                });
+            } else {
+                addGlowToCards();
+                initGlowingEffect();
+            }
         })();
     </script>
 </body>

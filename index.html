@@ -99,7 +99,6 @@
             z-index: -1;
             overflow: hidden;
             background: #000000;
-            cursor: none;
         }
 
         /* Interactive Particle Canvas */
@@ -194,31 +193,6 @@
             transform-origin: left center;
             opacity: 0.2;
             transition: opacity 0.3s ease;
-        }
-
-        /* Cursor Follower */
-        .cursor-follower {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(108, 92, 231, 0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease-out;
-            box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
-        }
-
-        .cursor-follower::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
-            background: rgba(108, 92, 231, 0.8);
-            border-radius: 50%;
         }
 
         /* AI Circuit Pattern */
@@ -2283,12 +2257,17 @@
             z-index: 100;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
-            opacity: 0.9;
-            pointer-events: auto;
+            opacity: 0;
+            pointer-events: none;
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+        }
+
+        .carousel-wrapper:hover .carousel-btn {
+            opacity: 0.9;
+            pointer-events: auto;
         }
 
         .carousel-btn:disabled {
@@ -2342,7 +2321,7 @@
 
         /* --- PROJECTS (GLASS CARDS) --- */
         .project-grid {
-            overflow-x: auto;
+            overflow: hidden;
             overflow-y: hidden;
             padding: 20px 60px 40px;
             scroll-behavior: smooth;
@@ -2363,6 +2342,20 @@
             width: fit-content;
             padding: 0 5%;
             min-width: calc(100% - 10%);
+            animation: scrollCarousel 30s linear infinite;
+        }
+
+        .carousel-wrapper:hover .project-container {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollCarousel {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .project-card {
@@ -3401,11 +3394,12 @@
             position: relative;
             width: 100%;
             height: 100%;
-            min-height: 650px;
+            min-height: 500px;
             border-radius: 0;
-            overflow: visible;
+            overflow: hidden;
             background: transparent;
             border: none;
+            opacity: 0.85;
         }
 
         .spline-container spline-viewer {
@@ -3431,6 +3425,30 @@
             visibility: hidden !important;
             opacity: 0 !important;
             pointer-events: none !important;
+        }
+
+        /* Hide Spline hint/touch icon and loading */
+        spline-viewer::part(hint),
+        spline-viewer::part(loading),
+        spline-viewer [class*="hint"],
+        spline-viewer [class*="touch"],
+        spline-viewer [class*="drag"],
+        spline-viewer [class*="gesture"],
+        spline-viewer [class*="loading"],
+        spline-viewer [class*="Loading"],
+        spline-viewer svg[class*="hint"],
+        spline-viewer .spline-watermark,
+        spline-viewer canvas + div,
+        spline-viewer > div:not(:first-child) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Hide any SVG overlays in spline that aren't part of the 3D scene */
+        .spline-container svg:not(canvas svg) {
+            display: none !important;
         }
         
         /* Cover watermark area with overlay - minimal */
@@ -3472,10 +3490,6 @@
             z-index: 1;
             opacity: 0.8;
         }
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.8;
-        }
 
         .spline-glow {
             display: none;
@@ -3483,15 +3497,15 @@
 
         .spline-wrapper {
             position: relative;
-            width: 140%;
+            width: 100%;
             max-width: none;
             height: 100%;
-            min-height: 650px;
+            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: visible;
-            margin-right: -20%;
+            overflow: hidden;
+            margin-right: 0;
         }
 
         .spline-loader {
@@ -3648,6 +3662,7 @@
                 transparent calc(var(--glow-spread) * 2deg)
             );
         }
+
     </style>
 
     <!-- Spline 3D Runtime -->
@@ -3670,9 +3685,6 @@
         
         <!-- Keep fluid canvas for depth -->
         <canvas id="fluid-canvas"></canvas>
-        
-        <!-- Cursor Follower -->
-        <div class="cursor-follower" id="cursor-follower"></div>
         
         <!-- Floating particles -->
         <div class="bg-particles">
@@ -3794,10 +3806,6 @@
                 
                 <div class="spline-wrapper">
                     <div class="spline-container" id="spline-scene">
-                        <div class="spline-loader">
-                            <div class="loader"></div>
-                            <span class="spline-loader-text">Loading 3D...</span>
-                        </div>
                         <spline-viewer 
                             url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                             events-target="global"
@@ -3995,7 +4003,7 @@
         </div>
         
         <div class="carousel-wrapper">
-            <button class="carousel-btn carousel-btn-prev" id="project-prev-btn" aria-label="Previous projects" onclick="document.getElementById('project-grid').scrollBy({left: -400, behavior: 'smooth'}); return false;">
+            <button class="carousel-btn carousel-btn-prev" id="project-prev-btn" aria-label="Previous projects">
                 <i class="fas fa-chevron-left"></i>
             </button>
         <div class="project-grid" id="project-grid">
@@ -4121,7 +4129,7 @@
             </a>
             </div>
             </div>
-            <button class="carousel-btn carousel-btn-next" id="project-next-btn" aria-label="Next projects" onclick="document.getElementById('project-grid').scrollBy({left: 400, behavior: 'smooth'}); return false;">
+            <button class="carousel-btn carousel-btn-next" id="project-next-btn" aria-label="Next projects">
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
@@ -5152,31 +5160,7 @@
             });
         }
         
-        // Cursor Follower
-        function initCursorFollower() {
-            const follower = document.getElementById('cursor-follower');
-            if (!follower) return;
-            
-            let mouseX = window.innerWidth / 2;
-            let mouseY = window.innerHeight / 2;
-            let followerX = mouseX;
-            let followerY = mouseY;
-            
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-            
-            function animateFollower() {
-                followerX += (mouseX - followerX) * 0.1;
-                followerY += (mouseY - followerY) * 0.1;
-                follower.style.left = followerX + 'px';
-                follower.style.top = followerY + 'px';
-                requestAnimationFrame(animateFollower);
-            }
-            
-            animateFollower();
-        }
+        // Cursor follower is handled by inline script near the cursor elements
         
         // Initialize all interactive effects
         window.addEventListener('load', () => {
@@ -5185,7 +5169,7 @@
                 initInteractiveMesh();
                 initInteractiveOrbs();
                 initRippleEffect();
-                initCursorFollower();
+                // Cursor is handled by inline script
             }, 100);
         });
         
@@ -5196,7 +5180,7 @@
                     initInteractiveMesh();
                     initInteractiveOrbs();
                     initRippleEffect();
-                    initCursorFollower();
+                    // Cursor is handled by inline script
                 }, 100);
             });
         } else {
@@ -5205,7 +5189,7 @@
                 initInteractiveMesh();
                 initInteractiveOrbs();
                 initRippleEffect();
-                initCursorFollower();
+                // Cursor is handled by inline script
             }, 100);
         }
         
@@ -5625,9 +5609,9 @@
             
             function setupCarousels() {
                 console.log('Setting up carousels...');
-                const result1 = initCarousel('project-grid', 'project-prev-btn', 'project-next-btn');
+                // Project carousel is handled by infinite carousel script
                 const result2 = initCarousel('pub-grid', 'pub-prev-btn', 'pub-next-btn');
-                console.log('Carousel setup results:', { projects: result1, pubs: result2 });
+                console.log('Carousel setup results:', { pubs: result2 });
             }
             
             // Initialize when DOM is ready
@@ -5658,9 +5642,10 @@
             const splineContainer = document.getElementById('spline-scene');
             const splineViewer = document.querySelector('spline-viewer');
             
-            // Function to hide Spline watermark/logo
-            function hideSplineLogo() {
+            // Function to hide Spline watermark/logo and hint
+            function hideSplineOverlays() {
                 if (splineViewer && splineViewer.shadowRoot) {
+                    // Hide logo
                     const logo = splineViewer.shadowRoot.querySelector('#logo');
                     if (logo) {
                         logo.style.display = 'none';
@@ -5679,6 +5664,45 @@
                         logoDiv.style.display = 'none';
                         logoDiv.remove();
                     }
+                    
+                    // Hide hint/touch/gesture overlays
+                    const hintSelectors = [
+                        '[class*="hint"]',
+                        '[class*="Hint"]',
+                        '[class*="touch"]',
+                        '[class*="Touch"]',
+                        '[class*="gesture"]',
+                        '[class*="drag"]',
+                        '[class*="swipe"]',
+                        '[class*="loading"]',
+                        '[class*="Loading"]',
+                        'svg:not([class*="scene"])',
+                        'div > svg'
+                    ];
+                    
+                    hintSelectors.forEach(selector => {
+                        try {
+                            const elements = splineViewer.shadowRoot.querySelectorAll(selector);
+                            elements.forEach(el => {
+                                el.style.display = 'none';
+                                el.style.visibility = 'hidden';
+                                el.style.opacity = '0';
+                                el.remove();
+                            });
+                        } catch(e) {}
+                    });
+                    
+                    // Hide any div that's not the canvas container
+                    const allDivs = splineViewer.shadowRoot.querySelectorAll('div');
+                    allDivs.forEach(div => {
+                        // Skip the main container with canvas
+                        if (!div.querySelector('canvas') && !div.closest('canvas')) {
+                            const hasCanvas = div.getElementsByTagName('canvas').length > 0;
+                            if (!hasCanvas) {
+                                div.style.display = 'none';
+                            }
+                        }
+                    });
                 }
             }
             
@@ -5687,23 +5711,24 @@
                 splineViewer.addEventListener('load', function() {
                     splineContainer.classList.add('spline-loaded');
                     console.log('Spline 3D scene loaded successfully');
-                    // Hide logo after load
-                    hideSplineLogo();
-                    setTimeout(hideSplineLogo, 100);
-                    setTimeout(hideSplineLogo, 500);
-                    setTimeout(hideSplineLogo, 1000);
+                    // Hide overlays after load
+                    hideSplineOverlays();
+                    setTimeout(hideSplineOverlays, 100);
+                    setTimeout(hideSplineOverlays, 500);
+                    setTimeout(hideSplineOverlays, 1000);
+                    setTimeout(hideSplineOverlays, 2000);
                 });
                 
                 // Fallback: remove loader after timeout
                 setTimeout(function() {
                     splineContainer.classList.add('spline-loaded');
-                    hideSplineLogo();
+                    hideSplineOverlays();
                 }, 8000);
                 
-                // Multiple attempts to hide logo
-                setTimeout(hideSplineLogo, 2000);
-                setTimeout(hideSplineLogo, 3000);
-                setTimeout(hideSplineLogo, 5000);
+                // Multiple attempts to hide overlays
+                setTimeout(hideSplineOverlays, 2000);
+                setTimeout(hideSplineOverlays, 3000);
+                setTimeout(hideSplineOverlays, 5000);
             }
         })();
     </script>
@@ -5809,6 +5834,139 @@
                 addGlowToCards();
                 initGlowingEffect();
             }
+        })();
+    </script>
+
+    <!-- Infinite Carousel Script -->
+    <script>
+        (function() {
+            let currentOffset = 0;
+            let container = null;
+            let singleSetWidth = 0;
+            let animationPaused = false;
+            let initialized = false;
+            
+            function initInfiniteCarousel() {
+                if (initialized) return;
+                
+                container = document.getElementById('project-container');
+                if (!container) return;
+                
+                const cards = container.querySelectorAll('.project-card');
+                if (cards.length === 0) return;
+                
+                initialized = true;
+                
+                // Clone all cards to create seamless loop
+                cards.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    clone.classList.remove('hidden');
+                    container.appendChild(clone);
+                });
+                
+                // Make original cards visible too
+                cards.forEach(card => {
+                    card.classList.remove('hidden');
+                });
+                
+                // Calculate total width
+                const cardWidth = 380;
+                const gap = 30;
+                const totalCards = cards.length;
+                singleSetWidth = (cardWidth + gap) * totalCards;
+                
+                // Set animation duration
+                const duration = singleSetWidth / 40;
+                container.style.animationDuration = duration + 's';
+                
+                // Setup navigation buttons
+                const prevBtn = document.getElementById('project-prev-btn');
+                const nextBtn = document.getElementById('project-next-btn');
+                const carouselWrapper = container.closest('.carousel-wrapper');
+                
+                if (!carouselWrapper || !prevBtn || !nextBtn) {
+                    console.log('Carousel elements not found');
+                    return;
+                }
+                
+                // Handle hover to pause animation
+                carouselWrapper.addEventListener('mouseenter', function() {
+                    // Get current position from CSS animation
+                    const computedStyle = window.getComputedStyle(container);
+                    const matrix = new DOMMatrix(computedStyle.transform);
+                    currentOffset = matrix.m41 || 0;
+                    
+                    // Stop CSS animation
+                    container.style.animation = 'none';
+                    container.style.transform = 'translateX(' + currentOffset + 'px)';
+                    animationPaused = true;
+                });
+                
+                carouselWrapper.addEventListener('mouseleave', function() {
+                    // Calculate where we are as a percentage
+                    const progress = Math.abs(currentOffset) / singleSetWidth;
+                    const animDuration = singleSetWidth / 40;
+                    const delay = -(progress * animDuration);
+                    
+                    // Restart animation from current position
+                    container.style.transform = '';
+                    container.style.animation = 'scrollCarousel ' + animDuration + 's linear infinite';
+                    container.style.animationDelay = delay + 's';
+                    animationPaused = false;
+                });
+                
+                // Previous button
+                prevBtn.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (!animationPaused) return;
+                    
+                    currentOffset += 410;
+                    if (currentOffset > 0) {
+                        currentOffset = -singleSetWidth + 410;
+                    }
+                    
+                    container.style.transition = 'transform 0.4s ease-out';
+                    container.style.transform = 'translateX(' + currentOffset + 'px)';
+                    
+                    setTimeout(function() {
+                        container.style.transition = '';
+                    }, 400);
+                };
+                
+                // Next button
+                nextBtn.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (!animationPaused) return;
+                    
+                    currentOffset -= 410;
+                    if (currentOffset < -singleSetWidth) {
+                        currentOffset = currentOffset + singleSetWidth;
+                    }
+                    
+                    container.style.transition = 'transform 0.4s ease-out';
+                    container.style.transform = 'translateX(' + currentOffset + 'px)';
+                    
+                    setTimeout(function() {
+                        container.style.transition = '';
+                    }, 400);
+                };
+                
+                console.log('Infinite carousel initialized with', totalCards, 'cards');
+            }
+            
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initInfiniteCarousel);
+            } else {
+                initInfiniteCarousel();
+            }
+            
+            // Also try after a delay
+            setTimeout(initInfiniteCarousel, 600);
         })();
     </script>
 </body>
